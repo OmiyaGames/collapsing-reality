@@ -11,7 +11,7 @@ namespace GGJ2022
 		float defaultSkipDurationSeconds = 0.5f;
 
 		PlayerModel playerModel;
-		
+
 		void Awake()
 		{
 			playerModel = ModelFactory.Create<PlayerModel>();
@@ -27,12 +27,10 @@ namespace GGJ2022
 					Physics.autoSimulation = false;
 
 					// Skip forward in time
-					float totalTimePassed = 0f;
-					while (totalTimePassed < duration)
+					for (float totalTimePassed = 0f; totalTimePassed < duration; totalTimePassed += Time.fixedDeltaTime)
 					{
 						// Brute force the simulation
 						Physics.Simulate(Time.fixedDeltaTime);
-						totalTimePassed += Time.fixedDeltaTime;
 					}
 
 					Physics.autoSimulation = true;
