@@ -22,17 +22,21 @@ namespace GGJ2022
 		{
 			playerModel.SkipTime = (source, duration) =>
 			{
-				Physics.autoSimulation = false;
-
-				// Skip forward in time
-				float totalTimePassed = 0f;
-				while (totalTimePassed < duration)
+				if (duration > Time.fixedDeltaTime)
 				{
-					Physics.Simulate(Time.fixedDeltaTime);
-					totalTimePassed += Time.fixedDeltaTime;
-				}
+					Physics.autoSimulation = false;
 
-				Physics.autoSimulation = true;
+					// Skip forward in time
+					float totalTimePassed = 0f;
+					while (totalTimePassed < duration)
+					{
+						// Brute force the simulation
+						Physics.Simulate(Time.fixedDeltaTime);
+						totalTimePassed += Time.fixedDeltaTime;
+					}
+
+					Physics.autoSimulation = true;
+				}
 			};
 		}
 	}
