@@ -1,28 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using OmiyaGames.MVC;
 
-public class SkipTime : MonoBehaviour
+namespace GGJ2022
 {
-	[SerializeField]
-	float skipTime = 0.5f;
-
-	public void OnSkip(InputValue value)
+	public class SkipTime : MonoBehaviour
 	{
-		if(value.isPressed)
+		PlayerModel playerModel;
+		void Start()
 		{
-			Physics.autoSimulation = false;
+			playerModel = ModelFactory.Get<PlayerModel>();
+		}
 
-			// Skip forward in time
-			float totalTimePassed = 0f;
-			while(totalTimePassed < skipTime)
+		public void OnSkip(InputValue value)
+		{
+			if (value.isPressed)
 			{
-				Physics.Simulate(Time.fixedDeltaTime);
-				totalTimePassed += Time.fixedDeltaTime;
+				playerModel.SkipTime?.Invoke(this, playerModel.defaultSkipDurationSeconds);
 			}
-
-			Physics.autoSimulation = true;
 		}
 	}
 }
