@@ -216,6 +216,11 @@ namespace GGJ2022
 			lastMode = mode;
 		}
 
+		void OnDestroy()
+		{
+			ModelFactory.Reset();
+		}
+
 		void OnDrawGizmos()
 		{
 			if ((minPositionRange != null) && (maxPositionRange != null))

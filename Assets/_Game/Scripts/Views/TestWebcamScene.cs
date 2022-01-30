@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using OpenCvSharp.Demo;
+using OmiyaGames.MVC;
 
 namespace GGJ2022
 {
@@ -77,6 +78,7 @@ namespace GGJ2022
 		void OnDestroy()
 		{
 			webCamModel.DeviceName.OnAfterValueChanged -= DeviceName_OnAfterValueChanged;
+			ModelFactory.Reset();
 		}
 
 		void DeviceName_OnAfterValueChanged(string oldValue, string newValue)

@@ -56,6 +56,7 @@ namespace GGJ2022
 		{
 			// Save the new name into settings
 			PlayerPrefs.SetString(DEVICE_NAME_KEY, newValue);
+			Debug.Log($"Switching to WebCam: {newValue}");
 		}
 	}
 }
