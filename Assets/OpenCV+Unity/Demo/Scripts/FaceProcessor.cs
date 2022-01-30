@@ -39,7 +39,7 @@
     /// <summary>
     /// Holds face processor performance trick parameters
     /// </summary>
-    class FaceProcessorPerformanceParams
+    public class FaceProcessorPerformanceParams
     {
         /// <summary>
         /// Downscale limit, texture processing will downscale input up to this size
@@ -67,7 +67,7 @@
     /// <summary>
     /// High-level wrapper around OpenCV and DLib functionality that simplifies face detection tasks
     /// </summary>
-    class FaceProcessor<T>
+    public class FaceProcessor<T>
         where T: UnityEngine.Texture
     {
         protected CascadeClassifier cascadeFaces = null;
@@ -331,7 +331,7 @@
     /// <summary>
     /// FaceProcessor subclass designed for live (web camera or stream) processing
     /// </summary>
-    class FaceProcessorLive<T> : FaceProcessor<T>
+    public class FaceProcessorLive<T> : FaceProcessor<T>
         where T : UnityEngine.Texture
     {
         private int frameCounter = 0;
