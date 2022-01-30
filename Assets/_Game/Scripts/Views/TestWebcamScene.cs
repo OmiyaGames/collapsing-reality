@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 using OpenCvSharp.Demo;
-using OmiyaGames.MVC;
 
 namespace GGJ2022
 {
-	public class FaceTracker : WebCamera
+	public class TestWebcamScene : WebCamera
 	{
 		public TextAsset faces;
 		public TextAsset eyes;
 		public TextAsset shapes;
 
-		FaceProcessorLive<WebCamTexture> processor;
-		PlayerModel player;
+		private FaceProcessorLive<WebCamTexture> processor;
+		WebCamModel webCamModel;
 
 		/// <summary>
 		/// Default initializer for MonoBehavior sub-classes
@@ -19,10 +18,14 @@ namespace GGJ2022
 		protected override void Awake()
 		{
 			// Setup webcam
-			WebCamModel webCamModel = WebCam.SetupWebCam();
+			webCamModel = WebCam.SetupWebCam();
 			DeviceName = webCamModel.DeviceName.Value;
 			base.forceFrontalCamera = true; // we work with frontal cams here, let's force it for macOS s MacBook doesn't state frontal cam correctly
 
+			// Sign up for device name changes
+			webCamModel.DeviceName.OnAfterValueChanged += DeviceName_OnAfterValueChanged;
+
+			// Setup other stuff
 			byte[] shapeDat = shapes.bytes;
 			if (shapeDat.Length == 0)
 			{
@@ -54,11 +57,6 @@ namespace GGJ2022
 			processor.Performance.SkipRate = 0;             // we actually process only each Nth frame (and every frame for skipRate = 0)
 		}
 
-		void Start()
-		{
-			player = ModelFactory.Get<PlayerModel>();
-		}
-
 		/// <summary>
 		/// Per-frame video capture processor
 		/// </summary>
@@ -70,33 +68,21 @@ namespace GGJ2022
 			// mark detected objects
 			processor.MarkDetected();
 
-			// Attempt to grab a single face
-			if(processor.Faces.Count > 0)
-			{
-				DetectedFace face = processor.Faces[0];
-
-				player.nose.Value = face.Elements[(int)DetectedFace.FaceElements.Nose];
-				player.outerLip.Value = face.Elements[(int)DetectedFace.FaceElements.OuterLip];
-				player.leftEye.Value = face.Elements[(int)DetectedFace.FaceElements.LeftEye];
-				player.rightEye.Value = face.Elements[(int)DetectedFace.FaceElements.RightEye];
-
-				player.face.Value = face;
-				player.isFaceDetected.Value = true;
-			}
-			else
-			{
-				player.isFaceDetected.Value = false;
-			}
-
 			// processor.Image now holds data we'd like to visualize
-			//output = OpenCvSharp.Unity.MatToTexture(processor.Image, output);   // if output is valid texture it's buffer will be re-used, otherwise it will be re-created
-			Vector2 dimensions = player.webcamDimensionsPixels.Value;
-			var size = processor.Image.Size();
-			dimensions.x = size.Width;
-			dimensions.y = size.Height;
-			player.webcamDimensionsPixels.Value = dimensions;
+			output = OpenCvSharp.Unity.MatToTexture(processor.Image, output);   // if output is valid texture it's buffer will be re-used, otherwise it will be re-created
 
 			return true;
+		}
+
+		void OnDestroy()
+		{
+			webCamModel.DeviceName.OnAfterValueChanged -= DeviceName_OnAfterValueChanged;
+		}
+
+		void DeviceName_OnAfterValueChanged(string oldValue, string newValue)
+		{
+			// Change devices
+			DeviceName = newValue;
 		}
 	}
 }
