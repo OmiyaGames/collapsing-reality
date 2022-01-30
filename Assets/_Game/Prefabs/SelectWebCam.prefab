@@ -690,6 +690,7 @@ MonoBehaviour:
   startButton: {fileID: 6151077916470050909}
   noWebCamFoundLabel: {fileID: 6151077916566398869}
   camButton: {fileID: 343805408353629069}
+  navigator: {fileID: 7504050905336465839}
 --- !u!114 &7504050905336465839
 MonoBehaviour:
   m_ObjectHideFlags: 0

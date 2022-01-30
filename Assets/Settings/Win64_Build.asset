@@ -1,5 +1,73 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-3863237816531724909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90aa8e20c1245c343808f929cc036211, type: 3}
+  m_Name: Windows 64-bit Debug
+  m_EditorClassIdentifier: 
+  parentSetting: {fileID: 11400000}
+  fileName:
+    names:
+    - type: 1
+      text: 
+    asSlug: 0
+  folderName:
+    names:
+    - type: 1
+      text: 
+    - type: 0
+      text: ' v'
+    - type: 5
+      text: 
+    - type: 0
+      text: ' ('
+    - type: 2
+      text: 
+    - type: 0
+      text: )
+    asSlug: 0
+  buildNumber: 1
+  enableStrictMode: 0
+  enableAssertions: 0
+  customScenes:
+    enable: 0
+    customValue: []
+  debugSettings:
+    enable: 1
+    enableDebuggingScripts: 1
+    buildScriptsOnly: 0
+  archiveSettings:
+    enable: 0
+    type: 0
+    fileName:
+      names:
+      - type: 1
+        text: 
+      - type: 0
+        text: ' v'
+      - type: 5
+        text: 
+      - type: 0
+        text: ' ('
+      - type: 2
+        text: 
+      - type: 0
+        text: ).zip
+      asSlug: 0
+  customScriptDefineSymbols:
+    enable: 0
+    customValue: 
+  architecture: 1
+  compression: 2
+  scriptingBackend: 0
+  includePdbFles: 0
 --- !u!114 &-468154987737946960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,7 +101,7 @@ MonoBehaviour:
     - type: 0
       text: )
     asSlug: 0
-  buildNumber: 0
+  buildNumber: 1
   enableStrictMode: 0
   enableAssertions: 0
   customScenes:
@@ -94,3 +162,4 @@ MonoBehaviour:
   onBuildCancelled: 0
   allSettings:
   - {fileID: -468154987737946960}
+  - {fileID: -3863237816531724909}

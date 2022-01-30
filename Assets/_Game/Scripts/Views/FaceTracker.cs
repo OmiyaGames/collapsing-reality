@@ -20,7 +20,15 @@ namespace GGJ2022
 		{
 			// Setup webcam
 			WebCamModel webCamModel = WebCam.SetupWebCam();
-			DeviceName = webCamModel.DeviceName.Value;
+			try
+			{
+				DeviceName = webCamModel.DeviceName.Value;
+			}
+			catch (System.Exception _)
+			{
+				Debug.LogWarning($"Couldn't load {webCamModel.DeviceName.Value}");
+				DeviceName = null;
+			}
 			base.forceFrontalCamera = true; // we work with frontal cams here, let's force it for macOS s MacBook doesn't state frontal cam correctly
 
 			byte[] shapeDat = shapes.bytes;

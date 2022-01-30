@@ -17,11 +17,15 @@ namespace GGJ2022
 		GameObject noWebCamFoundLabel;
 		[SerializeField]
 		WebCamButton camButton;
+		[SerializeField]
+		MenuNavigator navigator;
 
 		WebCamModel webCamModel;
 		
 		public override Type MenuType => Type.DefaultManagedMenu;
 		public override Selectable DefaultUi => startButton;
+		public override MenuNavigator Navigator => navigator;
+		public override BackgroundMenu.BackgroundType Background => BackgroundMenu.BackgroundType.GradientRightToLeft;
 
 		void Start()
 		{
