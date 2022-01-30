@@ -15,6 +15,7 @@ namespace GGJ2022
 		LayerMask raycastMask;
 
 		PlayerModel playerModel;
+		QuantumTrigger leftEyeTrigger = null, rightEyeTrigger = null;
 
 		void Awake()
 		{
@@ -26,7 +27,7 @@ namespace GGJ2022
 
 		void Start()
 		{
-			playerModel.SkipTime = (source, duration) =>
+			playerModel.SkipTime += (source, duration) =>
 			{
 				if (duration > Time.fixedDeltaTime)
 				{
@@ -42,6 +43,42 @@ namespace GGJ2022
 					Physics.autoSimulation = true;
 				}
 			};
+
+			playerModel.RaycastFromEyes += (source) =>
+			{
+				RaycastHit hit;
+
+				// Ray-trace from each eye
+				leftEyeTrigger = GetTrigger(playerModel.leftEyeTransform, leftEyeTrigger);
+				rightEyeTrigger = GetTrigger(playerModel.rightEyeTransform, rightEyeTrigger);
+
+				QuantumTrigger GetTrigger(Transform eyeTransform, QuantumTrigger lastTrigger)
+				{
+					QuantumTrigger returnTrigger = null;
+
+					// Make sure transforms are set
+					if (eyeTransform != null)
+					{
+						// Reset the left eye trigger
+						if (lastTrigger != null)
+						{
+							lastTrigger.IsFocused = false;
+						}
+
+						// Raycast from eye
+						if (Physics.Raycast(eyeTransform.position, eyeTransform.forward, out hit, playerModel.raycastDistance, playerModel.raycastMask) && playerModel.colliderToTriggerMap.TryGetValue(hit.collider, out returnTrigger))
+						{
+							returnTrigger.IsFocused = true;
+						}
+					}
+					return returnTrigger;
+				}
+			};
+		}
+
+		void Update()
+		{
+			playerModel.RaycastFromEyes?.Invoke(this);
 		}
 	}
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9190616711737464144}
   - component: {fileID: 6642420967506450244}
   - component: {fileID: 7670929152259919520}
+  - component: {fileID: 1674192638902480555}
   m_Layer: 0
   m_Name: QuantumSphere
   m_TagString: Untagged
@@ -115,6 +116,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1674192638902480555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2181600010204680827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6525e49c003eac428ace7538d96aeab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 9190616711737464144}
+  lerpSpeed: 3
+  focusCollider: {fileID: 5645572225064956308}
+  destroyObject: {fileID: 2181600010204680827}
+  destroyAfterSeconds: 1
+  isFocused: 0
+  currentGlitchiness: 1
 --- !u!1 &6437682152452751254
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +146,6 @@ GameObject:
   - component: {fileID: 9187381732112917340}
   - component: {fileID: 5645572225064956308}
   - component: {fileID: 767938761544424502}
-  - component: {fileID: 9198278098144134850}
   m_Layer: 6
   m_Name: View Size
   m_TagString: Untagged
@@ -174,25 +193,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9198278098144134850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6437682152452751254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6525e49c003eac428ace7538d96aeab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mesh: {fileID: 9190616711737464144}
-  lerpSpeed: 2.5
-  destroyObject: {fileID: 2181600010204680827}
-  destroyAfterSeconds: 0.25
-  isFocused: 0
-  currentGlitchiness: 1

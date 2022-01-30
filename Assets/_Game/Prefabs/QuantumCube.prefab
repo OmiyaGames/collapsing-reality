@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6960131976389803004}
   - component: {fileID: 8421020707952197995}
   - component: {fileID: 9018239287499865690}
-  - component: {fileID: 2278994543925380538}
   m_Layer: 0
   m_Name: View Size
   m_TagString: Untagged
@@ -63,24 +62,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2278994543925380538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054287504275778444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6525e49c003eac428ace7538d96aeab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mesh: {fileID: 3280484542776128483}
-  lerpSpeed: 2.5
-  destroyObject: {fileID: 3280484542776128479}
-  destroyAfterSeconds: 0.25
-  isFocused: 0
-  currentGlitchiness: 1
 --- !u!1 &3280484542776128479
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +75,7 @@ GameObject:
   - component: {fileID: 3280484542776128483}
   - component: {fileID: 3280484542776128482}
   - component: {fileID: 3280484542776128481}
+  - component: {fileID: 6837902811510503104}
   m_Layer: 0
   m_Name: QuantumCube
   m_TagString: Untagged
@@ -196,3 +178,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6837902811510503104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3280484542776128479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6525e49c003eac428ace7538d96aeab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 3280484542776128483}
+  lerpSpeed: 3
+  focusCollider: {fileID: 8421020707952197995}
+  destroyObject: {fileID: 3280484542776128479}
+  destroyAfterSeconds: 1
+  isFocused: 0
+  currentGlitchiness: 1

@@ -30,5 +30,6 @@ namespace GGJ2022
 		public SerializableDictionary<Collider, QuantumTrigger> colliderToTriggerMap = new SerializableDictionary<Collider, QuantumTrigger>();
 
 		public Controller.Action<float> SkipTime;
+		public Controller.Action RaycastFromEyes;
 	}
 }

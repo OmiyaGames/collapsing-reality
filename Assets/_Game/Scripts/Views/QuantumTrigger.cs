@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using OmiyaGames;
 using OmiyaGames.MVC;
 
 namespace GGJ2022
 {
-	[RequireComponent(typeof(Collider))]
 	public class QuantumTrigger : MonoBehaviour
 	{
 		const string GLITCH = "_Glitch";
@@ -16,6 +13,8 @@ namespace GGJ2022
 		Renderer mesh;
 		[SerializeField]
 		float lerpSpeed = 5f;
+		[SerializeField]
+		Collider focusCollider;
 
 		[Header("Destroying")]
 		[SerializeField]
@@ -42,7 +41,7 @@ namespace GGJ2022
 		{
 			// Setup PlayerModel
 			PlayerModel playerModel = ModelFactory.Get<PlayerModel>();
-			playerModel.colliderToTriggerMap.Add(new SerializableDictionary<Collider, QuantumTrigger>.Pair(GetComponent<Collider>(), this));
+			playerModel.colliderToTriggerMap.Add(new SerializableDictionary<Collider, QuantumTrigger>.Pair(focusCollider, this));
 
 			// Set to maximum glitchiness
 			mesh.material.SetFloat(GLITCH, currentGlitchiness);
