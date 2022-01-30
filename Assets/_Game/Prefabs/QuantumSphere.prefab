@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 9190616711737464144}
-  lerpSpeed: 3
+  lerpSpeed: 4
   focusCollider: {fileID: 5645572225064956308}
   destroyObject: {fileID: 2181600010204680827}
   destroyAfterSeconds: 1

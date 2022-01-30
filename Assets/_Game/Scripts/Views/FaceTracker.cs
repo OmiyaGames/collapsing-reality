@@ -87,8 +87,12 @@ namespace GGJ2022
 			}
 
 			// processor.Image now holds data we'd like to visualize
-			output = OpenCvSharp.Unity.MatToTexture(processor.Image, output);   // if output is valid texture it's buffer will be re-used, otherwise it will be re-created
-			player.webcamTexture.Value = output;
+			//output = OpenCvSharp.Unity.MatToTexture(processor.Image, output);   // if output is valid texture it's buffer will be re-used, otherwise it will be re-created
+			Vector2 dimensions = player.webcamDimensionsPixels.Value;
+			var size = processor.Image.Size();
+			dimensions.x = size.Width;
+			dimensions.y = size.Height;
+			player.webcamDimensionsPixels.Value = dimensions;
 
 			return true;
 		}

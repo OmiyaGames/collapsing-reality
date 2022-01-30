@@ -22,8 +22,7 @@ namespace GGJ2022
 		public Trackable<DetectedObject> rightEye = new Trackable<DetectedObject>();
 		[HideInInspector]
 		public Trackable<DetectedObject> outerLip = new Trackable<DetectedObject>();
-		[HideInInspector]
-		public Trackable<Texture2D> webcamTexture = new Trackable<Texture2D>();
+		public Trackable<Vector2> webcamDimensionsPixels = new Trackable<Vector2>();
 		public Trackable<bool> isFaceDetected = new Trackable<bool>(false);
 		public Transform leftEyeTransform;
 		public Transform rightEyeTransform;

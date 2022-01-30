@@ -73,8 +73,8 @@ namespace GGJ2022
 			if (canPosition)
 			{
 				Vector2 timeVector = new Vector2(pixelCoord.X, pixelCoord.Y);
-				timeVector.x /= playerModel.webcamTexture.Value.width;
-				timeVector.y /= playerModel.webcamTexture.Value.height;
+				timeVector.x /= playerModel.webcamDimensionsPixels.Value.x;
+				timeVector.y /= playerModel.webcamDimensionsPixels.Value.y;
 
 				webCamTransform.GetLocalCorners(localCorners);
 				var topLeft = localCorners[1];

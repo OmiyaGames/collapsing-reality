@@ -41,10 +41,10 @@ namespace GGJ2022
 
 		void Update()
 		{
-			if(playerModel.face.HasValue && playerModel.webcamTexture.HasValue)
+			if(playerModel.face.HasValue)
 			{
 				targetRadius = playerModel.face.Value.Region.Height;
-				targetRadius /= playerModel.webcamTexture.Value.height;
+				targetRadius /= playerModel.webcamDimensionsPixels.Value.y;
 				targetRadius *= (rectTransform.rect.height * rectTransform.lossyScale.y) / 2f;
 			}
 

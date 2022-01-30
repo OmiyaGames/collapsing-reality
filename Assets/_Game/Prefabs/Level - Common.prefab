@@ -301,7 +301,6 @@ GameObject:
   - component: {fileID: 1686030364}
   - component: {fileID: 1686030363}
   - component: {fileID: 1686030366}
-  - component: {fileID: 3593890916243061662}
   m_Layer: 5
   m_Name: Webcam Texture
   m_TagString: Untagged
@@ -392,23 +391,6 @@ MonoBehaviour:
   faces: {fileID: 4900000, guid: 6b25a0e0227666d40b282be78b80780c, type: 3}
   eyes: {fileID: 4900000, guid: a1203bc8d0ab3b5469c52993e6874d7a, type: 3}
   shapes: {fileID: 4900000, guid: 8141d4a0988291c4f9e5fba2a3e448f1, type: 3}
---- !u!114 &3593890916243061662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686030360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 212f5645c0c32b94ba863fbb8064c84c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mask: {fileID: 1686030364}
-  noseTransform: {fileID: 2016824077}
-  defaultCenter: {x: 100, y: 100, z: 100}
-  smoothMoveCenter: 5
-  smoothExpandRadius: 5
 --- !u!1 &2016824076
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultSkipDurationSeconds: 0.5
-  raycastDistance: 20
+  raycastDistance: 400
   raycastMask:
     serializedVersion: 2
     m_Bits: 65
