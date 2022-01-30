@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using OmiyaGames.MVC;
 using OmiyaGames.Global;
+using OmiyaGames.Menus;
 
 namespace GGJ2022
 {
@@ -45,6 +46,7 @@ namespace GGJ2022
 		PlayerModel playerModel;
 		QuantumTrigger leftEyeTrigger = null, rightEyeTrigger = null;
 		float timeStart = -1f, lastSpawned = -1f, spawnDelay = 1f;
+		PlayerModel.Mode lastMode = PlayerModel.Mode.Tutorial;
 
 		void Awake()
 		{
@@ -171,7 +173,7 @@ namespace GGJ2022
 				if ((lastSpawned < 0) || ((Time.time - lastSpawned) > spawnDelay))
 				{
 					// Make sure there isn't too many triggers in the scene
-					if(playerModel.colliderToTriggerMap.Count >= maxNumCollectables)
+					if (playerModel.colliderToTriggerMap.Count >= maxNumCollectables)
 					{
 						return;
 					}
@@ -184,15 +186,28 @@ namespace GGJ2022
 					lastSpawned = Time.time;
 				}
 			}
-			else if(mode == PlayerModel.Mode.Done)
+			else if ((lastMode == PlayerModel.Mode.Playing) && (mode == PlayerModel.Mode.Done))
 			{
-				OmiyaGames.SIn
+				// On done, show all the menus
+				MenuManager menus = Singleton.Get<MenuManager>();
+				menus.Show<LevelFailedMenu>();
+				menus.Show<HighScoresMenu>();
+
+				// FIXME
+				if (false)
+				{
+					menus.Show<NewHighScoreMenu>();
+				}
+
+				// Force time stop
+				Singleton.Get<TimeManager>().IsManuallyPaused = true;
 			}
+			lastMode = mode;
 		}
 
 		void OnDrawGizmos()
 		{
-			if((minPositionRange != null) && (maxPositionRange != null))
+			if ((minPositionRange != null) && (maxPositionRange != null))
 			{
 				Gizmos.color = Color.yellow;
 				Vector3 center = (minPositionRange.position + maxPositionRange.position) / 2f;
