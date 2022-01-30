@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using OmiyaGames;
 using OmiyaGames.MVC;
 using OpenCvSharp.Demo;
@@ -9,6 +10,14 @@ namespace GGJ2022
 {
 	public class PlayerModel : Model
 	{
+		public enum Mode
+		{
+			Tutorial,
+			Starting,
+			Playing,
+			Done
+		}
+
 		public float defaultSkipDurationSeconds = 0.5f;
 		public float raycastDistance = 20f;
 		public LayerMask raycastMask;
@@ -27,8 +36,13 @@ namespace GGJ2022
 		public Transform leftEyeTransform;
 		public Transform rightEyeTransform;
 		public SerializableDictionary<Collider, QuantumTrigger> colliderToTriggerMap = new SerializableDictionary<Collider, QuantumTrigger>();
+		public IObjectPool<QuantumTrigger> triggerPool = null;
 
 		public Controller.Action<float> SkipTime;
 		public Controller.Action RaycastFromEyes;
+		public Controller.Func<QuantumTrigger> CreateTrigger;
+		public Controller.Action<QuantumTrigger> DestroyTrigger;
+		public Controller.Func<float> GetTimePassed;
+		public Controller.Func<Mode> GetMode;
 	}
 }

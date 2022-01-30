@@ -15,6 +15,8 @@ namespace GGJ2022
 		float lerpSpeed = 5f;
 		[SerializeField]
 		Collider focusCollider;
+		[SerializeField]
+		Rigidbody body;
 
 		[Header("Destroying")]
 		[SerializeField]
@@ -29,19 +31,26 @@ namespace GGJ2022
 		float currentGlitchiness = 1;
 
 		float timeLastStable = -1f;
+		PlayerModel playerModel;
 
 		public float Glitchiness => currentGlitchiness;
+		public GameObject GameObject => destroyObject;
+		public Collider FocusCollider => focusCollider;
+		public Rigidbody Body => Helpers.GetComponentCached(this, ref body);
 		public bool IsFocused
 		{
 			get => isFocused;
 			set => isFocused = value;
 		}
+		public Color Color
+		{
+			set => mesh.material.color = value;
+		}
 
 		void Start()
 		{
 			// Setup PlayerModel
-			PlayerModel playerModel = ModelFactory.Get<PlayerModel>();
-			playerModel.colliderToTriggerMap.Add(new SerializableDictionary<Collider, QuantumTrigger>.Pair(focusCollider, this));
+			playerModel = ModelFactory.Get<PlayerModel>();
 
 			// Set to maximum glitchiness
 			mesh.material.SetFloat(GLITCH, currentGlitchiness);
@@ -67,7 +76,7 @@ namespace GGJ2022
 				}
 				else if((Time.time - timeLastStable) > destroyAfterSeconds)
 				{
-					Destroy(destroyObject);
+					playerModel.DestroyTrigger?.Invoke(this, this);
 				}
 			}
 		}

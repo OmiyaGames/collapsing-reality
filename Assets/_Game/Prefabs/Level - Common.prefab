@@ -545,6 +545,54 @@ MonoBehaviour:
   raycastMask:
     serializedVersion: 2
     m_Bits: 65
+  maxNumCollectables: 50
+  collectable: {fileID: 1674192638902480555, guid: d1727986b2428984486096a5c90c22ad,
+    type: 3}
+  minPositionRange: {fileID: 0}
+  maxPositionRange: {fileID: 0}
+  maxVelocity: 10
+  maxTorque: 10
+  scaleRange: {x: 1, y: 5}
+  collectableColor:
+    hue: 0
+    saturation: 0.5959999
+    value: 0.943
+    alpha: 1
+  startTimer: 3
+  endGameAfterSeconds: 120
+  spawnCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 2
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 30
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 120
+      value: 4
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 4
 --- !u!1001 &209236973560952333
 PrefabInstance:
   m_ObjectHideFlags: 0

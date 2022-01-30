@@ -131,8 +131,9 @@ MonoBehaviour:
   mesh: {fileID: 9190616711737464144}
   lerpSpeed: 4
   focusCollider: {fileID: 5645572225064956308}
+  body: {fileID: 0}
   destroyObject: {fileID: 2181600010204680827}
-  destroyAfterSeconds: 1
+  destroyAfterSeconds: 0.5
   isFocused: 0
   currentGlitchiness: 1
 --- !u!1 &6437682152452751254
@@ -179,7 +180,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &767938761544424502
 Rigidbody:
