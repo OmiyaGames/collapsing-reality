@@ -31,16 +31,10 @@ MonoBehaviour:
         Taro Omiya
 
 
-        <b>3D
-        Models</b>
+        <b>2D
+        Textures</b>
 
-        Taro Omiya
-
-
-        <b>2D Textures</b>
-
-        Taro
-        Omiya
+        Unity
 
 
         <b>Music</b>
@@ -61,23 +55,15 @@ MonoBehaviour:
 
 
         <b>Special
-        Effects</b>
-
-        All particles effects
-
-        by Taro Omiya
-
-
-        <b>Special
         Thanks</b>
 
-        Tech Valley Game Space
+        Amber Waves of Games
 
-        Tech Valley Center of
-        Gravity
+        IGDA TC
 
 
-        <b>Support us on Ko-fi!</b>
+        <b>Support
+        us on Ko-fi!</b>
 
         Donate at: <link="kofi"><u>ko-fi.com/omiyagames</u></link>
 
@@ -95,7 +81,7 @@ MonoBehaviour:
   - key: Game Title
     allTranslations:
     - languageIndex: 0
-      text: Template Unity Project
+      text: Collapsing Reality
     - languageIndex: 1
       text: "\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u4E00\u25CF\u30E6\u30CB\u30C6\u30A3\u30FC\u25CF\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8"
     - languageIndex: 2
@@ -103,52 +89,26 @@ MonoBehaviour:
   - key: Instructions
     allTranslations:
     - languageIndex: 0
-      text: 'The game''s objective is to travel as far as possible without falling
-        off of the course. Please note that this game is still in development stages.
+      text: 'Stare at a glitchy particle to collapse its wave-form.  If stared long
+        enough, it will disappear, and you get a point!  Collapse as many particles
+        within 2 minutes!
 
 
         <b>Controls:</b>
 
 
-        *
-        Left or right arrow keys to steer.
+        * WASD or Arrow Keys
+        to move.
 
 
-        * Hold the down arrow key to
-        slow down.
+        * Move Mouse to look around
 
 
-        * Hold the up arrow key to use turbo (requires fuel).
-
-
-        *
-        Tap the space bar while on the ground to hop.
-
-
-        * Hold the space
-        bar while in the air to dive.
-
-
-        * While on the ground, hold the space
-        bar, then hold left or right to initiate a drift. When the white curve emit
-        from the corner of the vehicle, you may let go of the arrow key to continue
-        drifting; arrow keys can now be used to adjust the angle of the drift.
-
-
-        <b>Tips:</b>
+        * Space to jump
 
 
         *
-        If you end up off-track, a timer will appear to indicate how long you have
-        before the game over screen appears.
-
-
-        * Drifting and flying in the
-        air charges the turbo fuel.
-
-
-        * When off-track, use the turbo fuel
-        and dive to return back to safety!'
+        Hold Shift to run'
   - key: New High Score Format
     allTranslations:
     - languageIndex: 0

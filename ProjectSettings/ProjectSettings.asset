@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Omiya Games
-  productName: Template Project
+  productName: Collapsing Reality
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
@@ -138,7 +138,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0
+  bundleVersion: 0.1
   preloadedAssets:
   - {fileID: 11400000, guid: 4daa83795912dff4fb079da14fc9e52d, type: 2}
   metroInputSource: 0
@@ -159,7 +159,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.omiyagames.templateproject
-    Standalone: com.OmiyaGames.TemplateProject
+    Standalone: com.OmiyaGames.CollapsingReality
     Tizen: com.omiyagames.templateproject
     iPhone: com.omiyagames.templateproject
     tvOS: com.omiyagames.templateproject
