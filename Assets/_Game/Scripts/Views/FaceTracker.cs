@@ -4,7 +4,7 @@ using OmiyaGames.MVC;
 
 namespace GGJ2022
 {
-	public class FaceDetectorScene : WebCamera
+	public class FaceTracker : WebCamera
 	{
 		public TextAsset faces;
 		public TextAsset eyes;
@@ -73,11 +73,12 @@ namespace GGJ2022
 			{
 				DetectedFace face = processor.Faces[0];
 
-				player.nose.Value = face.Elements[(int)DetectedFace.FaceElements.NoseBridge];
+				player.nose.Value = face.Elements[(int)DetectedFace.FaceElements.Nose];
 				player.outerLip.Value = face.Elements[(int)DetectedFace.FaceElements.OuterLip];
 				player.leftEye.Value = face.Elements[(int)DetectedFace.FaceElements.LeftEye];
 				player.rightEye.Value = face.Elements[(int)DetectedFace.FaceElements.RightEye];
 
+				player.face.Value = face;
 				player.isFaceDetected.Value = true;
 			}
 			else
