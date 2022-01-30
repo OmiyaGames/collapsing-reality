@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using OpenCvSharp;
-using OpenCvSharp.Demo;
 using OmiyaGames;
 using OmiyaGames.MVC;
+using OpenCvSharp;
+using OpenCvSharp.Demo;
+using UnityEngine;
 
 namespace GGJ2022
 {
 	public class PositionToBodyPart : MonoBehaviour
 	{
 		static readonly Point ZERO = new Point(0, 0);
+
 		[SerializeField]
 		RectTransform webCamTransform;
 		[SerializeField]
 		DetectedFace.FaceElements bodyPart = DetectedFace.FaceElements.Nose;
+		[SerializeField]
+		bool fixedUpdate = false;
 
 		PlayerModel playerModel;
 		Vector3[] localCorners = new Vector3[4];
@@ -22,9 +23,35 @@ namespace GGJ2022
 		void Start()
 		{
 			playerModel = ModelFactory.Get<PlayerModel>();
+
+			switch (bodyPart)
+			{
+				case DetectedFace.FaceElements.LeftEye:
+					playerModel.leftEyeTransform = transform;
+					break;
+				case DetectedFace.FaceElements.RightEye:
+					playerModel.rightEyeTransform = transform;
+					break;
+			}
 		}
 
 		void Update()
+		{
+			if (!fixedUpdate)
+			{
+				UpdatePosition();
+			}
+		}
+
+		void FixedUpdate()
+		{
+			if (fixedUpdate)
+			{
+				UpdatePosition();
+			}
+		}
+
+		void UpdatePosition()
 		{
 			// Grab pixel coordinates of the facial body part
 			Point pixelCoord;

@@ -10,6 +10,8 @@ namespace GGJ2022
 	public class PlayerModel : Model
 	{
 		public float defaultSkipDurationSeconds = 0.5f;
+		public float raycastDistance = 20f;
+		public LayerMask raycastMask;
 		[HideInInspector]
 		public Trackable<DetectedFace> face = new Trackable<DetectedFace>();
 		[HideInInspector]
@@ -23,6 +25,9 @@ namespace GGJ2022
 		[HideInInspector]
 		public Trackable<Texture2D> webcamTexture = new Trackable<Texture2D>();
 		public Trackable<bool> isFaceDetected = new Trackable<bool>(false);
+		public Transform leftEyeTransform;
+		public Transform rightEyeTransform;
+		public SerializableDictionary<Collider, QuantumTrigger> colliderToTriggerMap = new SerializableDictionary<Collider, QuantumTrigger>();
 
 		public Controller.Action<float> SkipTime;
 	}

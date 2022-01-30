@@ -9,6 +9,10 @@ namespace GGJ2022
 	{
 		[SerializeField]
 		float defaultSkipDurationSeconds = 0.5f;
+		[SerializeField]
+		float raycastDistance = 20f;
+		[SerializeField]
+		LayerMask raycastMask;
 
 		PlayerModel playerModel;
 
@@ -16,6 +20,8 @@ namespace GGJ2022
 		{
 			playerModel = ModelFactory.Create<PlayerModel>();
 			playerModel.defaultSkipDurationSeconds = defaultSkipDurationSeconds;
+			playerModel.raycastDistance = raycastDistance;
+			playerModel.raycastMask = raycastMask;
 		}
 
 		void Start()

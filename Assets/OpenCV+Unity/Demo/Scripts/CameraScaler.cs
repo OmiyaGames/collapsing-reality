@@ -40,7 +40,8 @@
 				return;
 			}
 	
-			float aspect = Mathf.Min(Screen.height / height, Screen.width / width);
+			//float aspect = Mathf.Min(Screen.height / height, Screen.width / width);
+			float aspect = Screen.height / height;
 			this.transform.localScale = new Vector3 (aspect, aspect, 1.0f);
 		}
 	}
