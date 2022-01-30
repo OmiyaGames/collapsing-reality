@@ -64,6 +64,21 @@
 			// mark detected objects
 			processor.MarkDetected();
 
+			// Attempt to grab a single face
+			if(processor.Faces.Count > 0)
+			{
+				DetectedFace face = processor.Faces[0];
+				DetectedObject bodyPart = face.Elements[(int)DetectedFace.FaceElements.OuterLip];
+				bodyPart = face.Elements[(int)DetectedFace.FaceElements.NoseBridge];
+
+				//Debug.Log($"bodyPart.Name: {bodyPart.Name}, bodyPart.Region: {bodyPart.Region}");
+
+				bodyPart = face.Elements[(int)DetectedFace.FaceElements.LeftEye];
+				bodyPart = face.Elements[(int)DetectedFace.FaceElements.RightEye];
+				bodyPart = face.Elements[(int)DetectedFace.FaceElements.LeftEyebrow];
+				bodyPart = face.Elements[(int)DetectedFace.FaceElements.RightEyebrow];
+			}
+
 			// processor.Image now holds data we'd like to visualize
 			output = Unity.MatToTexture(processor.Image, output);   // if output is valid texture it's buffer will be re-used, otherwise it will be re-created
 
