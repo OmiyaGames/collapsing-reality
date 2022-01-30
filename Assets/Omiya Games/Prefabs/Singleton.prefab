@@ -100,19 +100,13 @@ MonoBehaviour:
     cursorMode: 0
     revertTimeScale: 1
   levels:
+  - scenePath: Assets/Omiya Games/Scenes/Debug Webcam.unity
+    displayName:
+      key: Level Button
+      dictionary: {fileID: 11400000, guid: c3ca07e6811f27b4d82bb14629e8450c, type: 2}
+    cursorMode: 1
+    revertTimeScale: 1
   - scenePath: Assets/Omiya Games/Scenes/Level 1.unity
-    displayName:
-      key: Level Button
-      dictionary: {fileID: 11400000, guid: c3ca07e6811f27b4d82bb14629e8450c, type: 2}
-    cursorMode: 1
-    revertTimeScale: 1
-  - scenePath: Assets/Omiya Games/Scenes/Level 2.unity
-    displayName:
-      key: Level Button
-      dictionary: {fileID: 11400000, guid: c3ca07e6811f27b4d82bb14629e8450c, type: 2}
-    cursorMode: 1
-    revertTimeScale: 1
-  - scenePath: Assets/Omiya Games/Scenes/Level 3.unity
     displayName:
       key: Level Button
       dictionary: {fileID: 11400000, guid: c3ca07e6811f27b4d82bb14629e8450c, type: 2}
