@@ -44,7 +44,7 @@ namespace GGJ2022
 		AnimationCurve spawnCurve;
 
 		PlayerModel playerModel;
-		QuantumTrigger leftEyeTrigger = null, rightEyeTrigger = null;
+		readonly List<QuantumTrigger> leftEyeTrigger = new List<QuantumTrigger>(), rightEyeTrigger = new List<QuantumTrigger>();
 		float timeStart = -1f, lastSpawned = -1f, spawnDelay = 1f;
 		PlayerModel.Mode lastMode = PlayerModel.Mode.Tutorial;
 
@@ -78,13 +78,13 @@ namespace GGJ2022
 
 			playerModel.RaycastFromEyes += (source) =>
 			{
-				RaycastHit hit;
+				RaycastHit[] hits;
 
 				// Ray-trace from each eye
-				leftEyeTrigger = GetTrigger(playerModel.leftEyeTransform, leftEyeTrigger);
-				rightEyeTrigger = GetTrigger(playerModel.rightEyeTransform, rightEyeTrigger);
+				GetTrigger(playerModel.leftEyeTransform, leftEyeTrigger);
+				GetTrigger(playerModel.rightEyeTransform, rightEyeTrigger);
 
-				QuantumTrigger GetTrigger(Transform eyeTransform, QuantumTrigger lastTrigger)
+				void GetTrigger(Transform eyeTransform, List<QuantumTrigger> lastTriggers)
 				{
 					QuantumTrigger returnTrigger = null;
 
@@ -92,18 +92,29 @@ namespace GGJ2022
 					if (eyeTransform != null)
 					{
 						// Reset the left eye trigger
-						if (lastTrigger != null)
+						foreach(var trigger in lastTriggers)
 						{
-							lastTrigger.IsFocused = false;
+							if (trigger != null)
+							{
+								trigger.IsFocused = false;
+							}
 						}
+						lastTriggers.Clear();
 
 						// Raycast from eye
-						if (Physics.Raycast(eyeTransform.position, eyeTransform.forward, out hit, playerModel.raycastDistance, playerModel.raycastMask) && playerModel.colliderToTriggerMap.TryGetValue(hit.collider, out returnTrigger))
+						hits = Physics.RaycastAll(eyeTransform.position, eyeTransform.forward, playerModel.raycastDistance, playerModel.raycastMask);
+						if ((hits != null) && (hits.Length > 0))
 						{
-							returnTrigger.IsFocused = true;
+							foreach (var hit in hits)
+							{
+								if (playerModel.colliderToTriggerMap.TryGetValue(hit.collider, out returnTrigger))
+								{
+									returnTrigger.IsFocused = true;
+									lastTriggers.Add(returnTrigger);
+								}
+							}
 						}
 					}
-					return returnTrigger;
 				}
 			};
 

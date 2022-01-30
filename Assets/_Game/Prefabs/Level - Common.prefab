@@ -544,7 +544,7 @@ MonoBehaviour:
   raycastDistance: 400
   raycastMask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 64
   maxNumCollectables: 50
   collectable: {fileID: 1674192638902480555, guid: d1727986b2428984486096a5c90c22ad,
     type: 3}
