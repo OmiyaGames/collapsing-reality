@@ -550,8 +550,8 @@ MonoBehaviour:
     type: 3}
   minPositionRange: {fileID: 0}
   maxPositionRange: {fileID: 0}
-  maxVelocity: 10
-  maxTorque: 10
+  maxVelocity: 20
+  maxTorque: 20
   scaleRange: {x: 1, y: 5}
   collectableColor:
     hue: 0
