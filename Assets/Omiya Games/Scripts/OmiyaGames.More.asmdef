@@ -1,0 +1,23 @@
+{
+    "name": "OmiyaGames.More",
+    "rootNamespace": "",
+    "references": [
+        "GUID:cdda17712c724478898665290e9a02cc",
+        "GUID:7f4dbb4916058a7438cc6b2e9fee8d60",
+        "GUID:5a47daee1058bbd4ebc7a2d2e7de3c24",
+        "GUID:1423d14cb49c2df4bbd0d62190b654ab",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:cdc4947907db47a4bafdf68c192e74ff",
+        "GUID:a7a1f455bdb1c5447a8576f53f5b8b93",
+        "GUID:4307f53044263cf4b835bd812fc161a4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

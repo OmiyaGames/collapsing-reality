@@ -344,7 +344,7 @@ MonoBehaviour:
   - key: Level Failed Title
     allTranslations:
     - languageIndex: 0
-      text: '{0} Failed'
+      text: Game Over
     - languageIndex: 1
       text: 
     - languageIndex: 2
