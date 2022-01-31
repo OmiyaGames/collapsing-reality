@@ -163,10 +163,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11491956, guid: e6de9bbfd0f4a40efae8b92c0481a228, type: 3}
-      propertyPath: backgroundMusic
-      value: 
-      objectReference: {fileID: 8300000, guid: ef5c2db96fbf25c4e89d3a2c7e94eff7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6de9bbfd0f4a40efae8b92c0481a228, type: 3}
 --- !u!1001 &912075020
@@ -1168,3 +1164,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38cd0f67799ad854888f767c6ec098bf, type: 3}
+--- !u!1 &1260576389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1259022043891962247, guid: 38cd0f67799ad854888f767c6ec098bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1260576388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1260576390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260576389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d5d216884639f47a929f383f02d559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

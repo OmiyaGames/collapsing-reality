@@ -19,7 +19,7 @@ namespace OpenCvSharp.Demo
 		/// </summary>
 		public GameObject Surface;
 
-		private Nullable<WebCamDevice> webCamDevice = null;
+		private WebCamDevice? webCamDevice = null;
 		private WebCamTexture webCamTexture = null;
 		private Texture2D renderedTexture = null;
 
@@ -33,14 +33,17 @@ namespace OpenCvSharp.Demo
 		/// </summary>
 		protected Unity.TextureConversionParams TextureParameters { get; private set; }
 
+		public virtual WebCamDevice? WebCamDevice { get => webCamDevice; set => webCamDevice = value; }
+		public virtual WebCamTexture WebCamTexture { get => webCamTexture; set => webCamTexture = value; }
+
 		/// <summary>
 		/// Camera device name, full list can be taken from WebCamTextures.devices enumerator
 		/// </summary>
-		public string DeviceName
+		public virtual string DeviceName
 		{
 			get
 			{
-				return (webCamDevice != null) ? webCamDevice.Value.name : null;
+				return (WebCamDevice != null) ? WebCamDevice.Value.name : null;
 			}
 			set
 			{
@@ -48,14 +51,14 @@ namespace OpenCvSharp.Demo
 				if (value == DeviceName)
 					return;
 
-				if (null != webCamTexture)
+				if (null != WebCamTexture)
 				{
-					if(webCamTexture.isPlaying)
-						webCamTexture.Stop();
+					if(WebCamTexture.isPlaying)
+						WebCamTexture.Stop();
 
 					// Destroy the webcam
-					Destroy(webCamTexture);
-					webCamTexture = null;
+					Destroy(WebCamTexture);
+					WebCamTexture = null;
 				}
 
 				// get device index
@@ -69,13 +72,13 @@ namespace OpenCvSharp.Demo
 				// set device up
 				if (-1 != cameraIndex)
 				{
-					webCamDevice = WebCamTexture.devices[cameraIndex];
-					webCamTexture = new WebCamTexture(webCamDevice.Value.name);
+					WebCamDevice = WebCamTexture.devices[cameraIndex];
+					WebCamTexture = new WebCamTexture(WebCamDevice.Value.name);
 
 					// read device params and make conversion map
 					ReadTextureConversionParameters();
 
-					webCamTexture.Play();
+					WebCamTexture.Play();
 				}
 				else
 				{
@@ -93,7 +96,7 @@ namespace OpenCvSharp.Demo
 			Unity.TextureConversionParams parameters = new Unity.TextureConversionParams();
 
 			// frontal camera - we must flip around Y axis to make it mirror-like
-			parameters.FlipHorizontally = forceFrontalCamera || webCamDevice.Value.isFrontFacing;
+			parameters.FlipHorizontally = forceFrontalCamera || WebCamDevice.Value.isFrontFacing;
 			
 			// TODO:
 			// actually, code below should work, however, on our devices tests every device except iPad
@@ -103,8 +106,8 @@ namespace OpenCvSharp.Demo
 			//parameters.FlipVertically = webCamTexture.videoVerticallyMirrored;
 			
 			// deal with rotation
-			if (0 != webCamTexture.videoRotationAngle)
-				parameters.RotationAngle = webCamTexture.videoRotationAngle; // cw -> ccw
+			if (0 != WebCamTexture.videoRotationAngle)
+				parameters.RotationAngle = WebCamTexture.videoRotationAngle; // cw -> ccw
 
 			// apply
 			TextureParameters = parameters;
@@ -121,21 +124,21 @@ namespace OpenCvSharp.Demo
 				DeviceName = WebCamTexture.devices[0].name;
 		}
 
-		void OnDestroy() 
+		protected virtual void OnDestroy() 
 		{
-			if (webCamTexture != null)
+			if (WebCamTexture != null)
 			{
-				if (webCamTexture.isPlaying)
+				if (WebCamTexture.isPlaying)
 				{
-					webCamTexture.Stop();
+					WebCamTexture.Stop();
 				}
-				Destroy(webCamTexture);
-				webCamTexture = null;
+				Destroy(WebCamTexture);
+				WebCamTexture = null;
 			}
 
-			if (webCamDevice != null) 
+			if (WebCamDevice != null) 
 			{
-				webCamDevice = null;
+				WebCamDevice = null;
 			}
 		}
 
@@ -144,13 +147,13 @@ namespace OpenCvSharp.Demo
 		/// </summary>
 		private void Update ()
 		{
-			if (webCamTexture != null && webCamTexture.didUpdateThisFrame)
+			if (WebCamTexture != null && WebCamTexture.didUpdateThisFrame)
 			{
 				// this must be called continuously
 				ReadTextureConversionParameters();
 
 				// process texture with whatever method sub-class might have in mind
-				if (ProcessTexture(webCamTexture, ref renderedTexture))
+				if (ProcessTexture(WebCamTexture, ref renderedTexture))
 				{
 					RenderFrame();
 				}

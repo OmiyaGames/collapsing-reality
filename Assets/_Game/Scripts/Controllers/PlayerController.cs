@@ -5,6 +5,7 @@ using UnityEngine.Pool;
 using OmiyaGames.MVC;
 using OmiyaGames.Global;
 using OmiyaGames.Menus;
+using OmiyaGames.Saves;
 
 namespace GGJ2022
 {
@@ -54,6 +55,7 @@ namespace GGJ2022
 			playerModel.defaultSkipDurationSeconds = defaultSkipDurationSeconds;
 			playerModel.raycastDistance = raycastDistance;
 			playerModel.raycastMask = raycastMask;
+			playerModel.gameDuration = endGameAfterSeconds;
 			playerModel.triggerPool = new ObjectPool<QuantumTrigger>(CreateTrigger, GetTrigger, ReleaseTrigger, DestroyTrigger, maxSize: maxNumCollectables);
 		}
 
@@ -121,6 +123,7 @@ namespace GGJ2022
 			playerModel.CreateTrigger += (source) =>
 			{
 				QuantumTrigger trigger = playerModel.triggerPool.Get();
+				trigger.Reset();
 
 				// Setup scale
 				trigger.transform.localScale = Vector3.one * Random.Range(scaleRange.x, scaleRange.y);
@@ -147,6 +150,7 @@ namespace GGJ2022
 			{
 				playerModel.triggerPool.Release(trigger);
 				playerModel.colliderToTriggerMap.Remove(trigger.FocusCollider);
+				playerModel.score.Value += 1;
 			};
 
 			playerModel.GetTimePassed += (source) => timeStart > 0f ? (Time.time - timeStart) : 0f;
@@ -204,10 +208,13 @@ namespace GGJ2022
 				menus.Show<LevelFailedMenu>();
 				menus.Show<HighScoresMenu>();
 
-				// FIXME
-				if (false)
+				// Attempt to add a new record
+				GameSettings settings = Singleton.Get<GameSettings>();
+				int placement = settings.HighScores.AddRecord(playerModel.score.Value, settings.LastEnteredName, out IRecord<int> record);
+				if (placement >= 0)
 				{
-					menus.Show<NewHighScoreMenu>();
+					NewHighScoreMenu enterScore = menus.Show<NewHighScoreMenu>();
+					enterScore.Setup(placement, record);
 				}
 
 				// Force time stop
@@ -218,7 +225,7 @@ namespace GGJ2022
 
 		void OnDestroy()
 		{
-			ModelFactory.Reset();
+			ModelFactory.Release<PlayerModel>();
 		}
 
 		void OnDrawGizmos()

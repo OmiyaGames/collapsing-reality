@@ -21,6 +21,7 @@ namespace GGJ2022
 		public float defaultSkipDurationSeconds = 0.5f;
 		public float raycastDistance = 20f;
 		public LayerMask raycastMask;
+		public float gameDuration;
 		[HideInInspector]
 		public Trackable<DetectedFace> face = new Trackable<DetectedFace>();
 		[HideInInspector]
@@ -33,6 +34,7 @@ namespace GGJ2022
 		public Trackable<DetectedObject> outerLip = new Trackable<DetectedObject>();
 		public Trackable<Vector2> webcamDimensionsPixels = new Trackable<Vector2>();
 		public Trackable<bool> isFaceDetected = new Trackable<bool>(false);
+		public Trackable<int> score = new Trackable<int>(0);
 		public Transform leftEyeTransform;
 		public Transform rightEyeTransform;
 		public SerializableDictionary<Collider, QuantumTrigger> colliderToTriggerMap = new SerializableDictionary<Collider, QuantumTrigger>();

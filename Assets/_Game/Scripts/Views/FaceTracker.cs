@@ -12,6 +12,54 @@ namespace GGJ2022
 
 		FaceProcessorLive<WebCamTexture> processor;
 		PlayerModel player;
+		WebCamModel webCamModel;
+
+		public override string DeviceName
+		{
+			get => webCamModel != null ? webCamModel.DeviceName.Value : base.DeviceName;
+			set
+			{
+				if (webCamModel != null)
+				{
+					webCamModel.DeviceName.Value = value;
+				}
+				else
+				{
+					base.DeviceName = value;
+				}
+			}
+		}
+
+		public override WebCamDevice? WebCamDevice
+		{
+			get => webCamModel != null ? webCamModel.CameraInfo : base.WebCamDevice;
+			set
+			{
+				if (webCamModel != null)
+				{
+					webCamModel.CameraInfo = value;
+				}
+				else
+				{
+					base.WebCamDevice = value;
+				}
+			}
+		}
+		public override WebCamTexture WebCamTexture
+		{
+			get => webCamModel != null ? webCamModel.CameraTexture : base.WebCamTexture;
+			set
+			{
+				if (webCamModel != null)
+				{
+					webCamModel.CameraTexture.Value = value;
+				}
+				else
+				{
+					base.WebCamTexture = value;
+				}
+			}
+		}
 
 		/// <summary>
 		/// Default initializer for MonoBehavior sub-classes
@@ -19,16 +67,7 @@ namespace GGJ2022
 		protected override void Awake()
 		{
 			// Setup webcam
-			WebCamModel webCamModel = WebCam.SetupWebCam();
-			try
-			{
-				DeviceName = webCamModel.DeviceName.Value;
-			}
-			catch (System.Exception _)
-			{
-				Debug.LogWarning($"Couldn't load {webCamModel.DeviceName.Value}");
-				DeviceName = null;
-			}
+			webCamModel = WebCam.SetupWebCam();
 			base.forceFrontalCamera = true; // we work with frontal cams here, let's force it for macOS s MacBook doesn't state frontal cam correctly
 
 			byte[] shapeDat = shapes.bytes;

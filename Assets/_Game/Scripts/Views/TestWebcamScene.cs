@@ -13,6 +13,54 @@ namespace GGJ2022
 		private FaceProcessorLive<WebCamTexture> processor;
 		WebCamModel webCamModel;
 
+
+		public override string DeviceName
+		{
+			get => webCamModel != null ? webCamModel.DeviceName.Value : base.DeviceName;
+			set
+			{
+				if (webCamModel != null)
+				{
+					webCamModel.DeviceName.Value = value;
+				}
+				else
+				{
+					base.DeviceName = value;
+				}
+			}
+		}
+
+		public override WebCamDevice? WebCamDevice
+		{
+			get => webCamModel != null ? webCamModel.CameraInfo : base.WebCamDevice;
+			set
+			{
+				if (webCamModel != null)
+				{
+					webCamModel.CameraInfo = value;
+				}
+				else
+				{
+					base.WebCamDevice = value;
+				}
+			}
+		}
+		public override WebCamTexture WebCamTexture
+		{
+			get => webCamModel != null ? webCamModel.CameraTexture : base.WebCamTexture;
+			set
+			{
+				if (webCamModel != null)
+				{
+					webCamModel.CameraTexture.Value = value;
+				}
+				else
+				{
+					base.WebCamTexture = value;
+				}
+			}
+		}
+
 		/// <summary>
 		/// Default initializer for MonoBehavior sub-classes
 		/// </summary>
@@ -20,11 +68,10 @@ namespace GGJ2022
 		{
 			// Setup webcam
 			webCamModel = WebCam.SetupWebCam();
-			DeviceName = webCamModel.DeviceName.Value;
 			base.forceFrontalCamera = true; // we work with frontal cams here, let's force it for macOS s MacBook doesn't state frontal cam correctly
 
 			// Sign up for device name changes
-			webCamModel.DeviceName.OnAfterValueChanged += DeviceName_OnAfterValueChanged;
+			//webCamModel.DeviceName.OnAfterValueChanged += DeviceName_OnAfterValueChanged;
 
 			// Setup other stuff
 			byte[] shapeDat = shapes.bytes;
@@ -75,16 +122,16 @@ namespace GGJ2022
 			return true;
 		}
 
-		void OnDestroy()
+		protected override void OnDestroy()
 		{
-			webCamModel.DeviceName.OnAfterValueChanged -= DeviceName_OnAfterValueChanged;
-			ModelFactory.Reset();
+			base.OnDestroy();
+			//webCamModel.DeviceName.OnAfterValueChanged -= DeviceName_OnAfterValueChanged;
 		}
 
-		void DeviceName_OnAfterValueChanged(string oldValue, string newValue)
-		{
-			// Change devices
-			DeviceName = newValue;
-		}
+		//void DeviceName_OnAfterValueChanged(string oldValue, string newValue)
+		//{
+		//	// Change devices
+		//	DeviceName = newValue;
+		//}
 	}
 }

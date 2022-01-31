@@ -47,13 +47,21 @@ namespace GGJ2022
 			set => mesh.material.color = value;
 		}
 
+		public void Reset()
+		{
+			// Set to maximum glitchiness
+			IsFocused = false;
+			currentGlitchiness = 1;
+			mesh.material.SetFloat(GLITCH, currentGlitchiness);
+		}
+
 		void Start()
 		{
 			// Setup PlayerModel
 			playerModel = ModelFactory.Get<PlayerModel>();
 
 			// Set to maximum glitchiness
-			mesh.material.SetFloat(GLITCH, currentGlitchiness);
+			Reset();
 		}
 
 		void Update()

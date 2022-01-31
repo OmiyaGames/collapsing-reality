@@ -56,7 +56,39 @@ namespace GGJ2022
 		{
 			// Save the new name into settings
 			PlayerPrefs.SetString(DEVICE_NAME_KEY, newValue);
+
+			// quick test
+			if (oldValue == newValue)
+			{
+				return;
+			}
+
 			Debug.Log($"Switching to WebCam: {newValue}");
+			var webCamModel = ModelFactory.Get<WebCamModel>();
+			webCamModel.Dispose();
+
+			// get device index
+			int cameraIndex = -1;
+			for (int i = 0; i < WebCamTexture.devices.Length; i++)
+			{
+				if (WebCamTexture.devices[i].name == newValue)
+				{
+					cameraIndex = i;
+					break;
+				}
+			}
+
+			// set device up
+			if (cameraIndex >= 0)
+			{
+				webCamModel.CameraInfo = WebCamTexture.devices[cameraIndex];
+				webCamModel.CameraTexture.Value = new WebCamTexture(webCamModel.CameraInfo.Value.name);
+				webCamModel.CameraTexture.Value.Play();
+			}
+			else
+			{
+				throw new System.ArgumentException($"provided DeviceName \"{newValue}\"is not correct device identifier");
+			}
 		}
 	}
 }
