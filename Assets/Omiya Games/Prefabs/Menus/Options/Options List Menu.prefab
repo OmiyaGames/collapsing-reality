@@ -215,7 +215,7 @@ MonoBehaviour:
     enabledFor: 0
   graphicsButton:
     component: {fileID: 1352662868994307320}
-    enabledFor: 0
+    enabledFor: -1
   accessibilityButton:
     component: {fileID: 1352334134039718336}
     enabledFor: -1

@@ -48,8 +48,15 @@ namespace OpenCvSharp.Demo
 				if (value == DeviceName)
 					return;
 
-				if (null != webCamTexture && webCamTexture.isPlaying)
-					webCamTexture.Stop();
+				if (null != webCamTexture)
+				{
+					if(webCamTexture.isPlaying)
+						webCamTexture.Stop();
+
+					// Destroy the webcam
+					Destroy(webCamTexture);
+					webCamTexture = null;
+				}
 
 				// get device index
 				int cameraIndex = -1;
@@ -122,6 +129,7 @@ namespace OpenCvSharp.Demo
 				{
 					webCamTexture.Stop();
 				}
+				Destroy(webCamTexture);
 				webCamTexture = null;
 			}
 
