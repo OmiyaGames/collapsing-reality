@@ -92,7 +92,7 @@ MonoBehaviour:
       text: 
     - type: 0
       text: ' v'
-    - type: 5
+    - type: 4
       text: 
     - type: 0
       text: ' ('
@@ -120,7 +120,7 @@ MonoBehaviour:
         text: 
       - type: 0
         text: ' v'
-      - type: 5
+      - type: 4
         text: 
       - type: 0
         text: ' ('
