@@ -28,6 +28,8 @@ namespace GGJ2022
 		[SerializeField]
 		Transform maxPositionRange;
 		[SerializeField]
+		Vector3 hidePosition = Vector3.down * 100f;
+		[SerializeField]
 		int maxVelocity = 5;
 		[SerializeField]
 		int maxTorque = 5;
@@ -42,12 +44,16 @@ namespace GGJ2022
 		[SerializeField]
 		float endGameAfterSeconds = 120;
 		[SerializeField]
+		[Range(0f, 1f)]
+		float varySpawnTimeMultiplier = 0.25f;
+		[SerializeField]
 		AnimationCurve spawnCurve;
 
 		PlayerModel playerModel;
 		readonly List<QuantumTrigger> leftEyeTrigger = new List<QuantumTrigger>(), rightEyeTrigger = new List<QuantumTrigger>();
 		float timeStart = -1f, lastSpawned = -1f, spawnDelay = 1f;
 		PlayerModel.Mode lastMode = PlayerModel.Mode.Tutorial;
+		Vector2 multiplierRange = Vector2.one;
 
 		void Awake()
 		{
@@ -57,6 +63,9 @@ namespace GGJ2022
 			playerModel.raycastMask = raycastMask;
 			playerModel.gameDuration = endGameAfterSeconds;
 			playerModel.triggerPool = new ObjectPool<QuantumTrigger>(CreateTrigger, GetTrigger, ReleaseTrigger, DestroyTrigger, maxSize: maxNumCollectables);
+
+			multiplierRange.x = (1f - varySpawnTimeMultiplier);
+			multiplierRange.y = (1f + varySpawnTimeMultiplier);
 		}
 
 		void Start()
@@ -198,6 +207,7 @@ namespace GGJ2022
 
 					// Delay the next spawn
 					spawnDelay = spawnCurve.Evaluate(playerModel.GetTimePassed(this));
+					spawnDelay *= Random.Range(multiplierRange.x, multiplierRange.y);
 					lastSpawned = Time.time;
 				}
 			}
@@ -257,6 +267,7 @@ namespace GGJ2022
 
 		private void ReleaseTrigger(QuantumTrigger obj)
 		{
+			obj.transform.position = hidePosition;
 			obj.GameObject.SetActive(false);
 		}
 

@@ -101,7 +101,7 @@ MonoBehaviour:
     - type: 0
       text: )
     asSlug: 0
-  buildNumber: 1
+  buildNumber: 5
   enableStrictMode: 0
   enableAssertions: 0
   customScenes:
@@ -112,7 +112,7 @@ MonoBehaviour:
     enableDebuggingScripts: 1
     buildScriptsOnly: 0
   archiveSettings:
-    enable: 1
+    enable: 0
     type: 0
     fileName:
       names:
@@ -133,7 +133,7 @@ MonoBehaviour:
     enable: 0
     customValue: 
   architecture: 1
-  compression: 2
+  compression: 0
   scriptingBackend: 0
   includePdbFles: 0
 --- !u!114 &11400000

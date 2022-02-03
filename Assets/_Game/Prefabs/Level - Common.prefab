@@ -560,44 +560,45 @@ MonoBehaviour:
     alpha: 1
   startTimer: 3
   endGameAfterSeconds: 120
+  varySpawnTimeMultiplier: 0.25
   spawnCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 2
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      inSlope: -0.033333335
+      outSlope: -0.033333335
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 30
       value: 1
-      inSlope: -0.016666668
-      outSlope: -0.016666668
+      inSlope: -0.012500001
+      outSlope: -0.012500001
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 60
-      value: 1
-      inSlope: 0.025
-      outSlope: 0.025
+      time: 90
+      value: 1.5
+      inSlope: 0.029166667
+      outSlope: 0.029166667
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 120
-      value: 4
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
+      value: 3
+      inSlope: 0.05
+      outSlope: 0.05
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 0
